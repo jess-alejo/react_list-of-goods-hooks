@@ -42,7 +42,7 @@ const sortGoods = (
     }
   });
 
-  return reversed ? sortedGoods.toReversed() : sortedGoods;
+  return reversed ? [...sortedGoods].reverse() : sortedGoods;
 };
 
 export const App: React.FC = () => {
@@ -59,7 +59,7 @@ export const App: React.FC = () => {
         break;
       case SortType.reversed:
         setReversed(!reversed);
-        setGoods([...goods].toReversed());
+        setGoods([...goods].reverse());
         break;
       default:
         setSortType(SortType.none);
@@ -115,13 +115,11 @@ export const App: React.FC = () => {
       </div>
 
       <ul>
-        <ul>
-          {goods.map(good => (
-            <li data-cy="Good" key={good}>
-              {good}
-            </li>
-          ))}
-        </ul>
+        {goods.map(good => (
+          <li data-cy="Good" key={good}>
+            {good}
+          </li>
+        ))}
       </ul>
     </div>
   );
